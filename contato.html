@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contato de Lucas Petito — Full Stack .NET Developer.">
+  <title>Contato — Lucas Petito</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="pagina-contato">
+
+  <div class="seletor-idioma" role="group" aria-label="Selecionar idioma" data-i18n-aria="idioma.seletor">
+    <button type="button" data-lang="pt" aria-pressed="true">PT-BR</button>
+    <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    <button type="button" data-lang="es" aria-pressed="false">ES</button>
+  </div>
+
+  <div class="contato-wrapper">
+    <div class="foto-luz-contato">
+      <img class="contato-foto" src="assets/images/eu-8bit.png" alt="Foto de Lucas Petito" data-i18n-alt="foto.alt" width="227" height="340" loading="lazy">
+    </div>
+    <main class="contato-caixa">
+    <h1 data-i18n="contato.titulo">Contato</h1>
+    <p class="contato-intro" data-i18n="contato.intro">Você bateu na porta da cabana certa!</p>
+
+    <ul class="contato-lista">
+      <li>
+        <svg class="contato-icone" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6zM3 13c0-2.8 2.2-5 5-5s5 2.2 5 5v1H3v-1z"/></svg>
+        <span class="contato-campo">
+          <span class="contato-rotulo" data-i18n="contato.nome">Nome</span>
+          Lucas Petito
+        </span>
+      </li>
+      <li>
+        <svg class="contato-icone" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M6 1h4v3h5a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h5V1zm2 2v1h2V3H8zM0 8h16v2H0V8z"/></svg>
+        <span class="contato-campo">
+          <span class="contato-rotulo" data-i18n="contato.cargo">Cargo</span>
+          Full Stack .NET Developer
+        </span>
+      </li>
+      <li>
+        <svg class="contato-icone" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a5 5 0 0 1 5 5c0 3.5-3.5 7.6-4.6 8.8a.5.5 0 0 1-.8 0C6.5 13.6 3 9.5 3 6a5 5 0 0 1 5-5zm0 3a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/></svg>
+        <span class="contato-campo">
+          <span class="contato-rotulo" data-i18n="contato.local">Local</span>
+          Cabo Frio, RJ, Brasil
+        </span>
+      </li>
+      <li>
+        <svg class="contato-icone" viewBox="0 0 16 16" fill="currentColor" fill-rule="evenodd" aria-hidden="true"><path d="M1 3h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm7 6.4L2.6 5h10.8L8 9.4z"/></svg>
+        <span class="contato-campo">
+          <span class="contato-rotulo" data-i18n="contato.email">E-mail</span>
+          <a href="mailto:lcpetito0511@gmail.com">lcpetito0511@gmail.com</a>
+        </span>
+      </li>
+      <li>
+        <svg class="contato-icone" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M3 1h3l2 4-2 1.5a11 11 0 0 0 3.5 3.5L11 8l4 2v3a2 2 0 0 1-2 2c-2 0-4.5-1.2-6.7-3.3S1 5 1 3a2 2 0 0 1 2-2z"/></svg>
+        <span class="contato-campo">
+          <span class="contato-rotulo" data-i18n="contato.telefone">Telefone</span>
+          <a href="tel:+5522974044301">+55 (22) 97404-4301</a>
+        </span>
+      </li>
+    </ul>
+
+    <div class="contato-acoes">
+      <a class="btn-cv" href="assets/docs/Lucas_Petito_CV_EN.docx" download data-i18n="cv.en">&gt; Baixar CV (EN)</a>
+      <a class="btn-cv" href="assets/docs/Lucas_Petito_CV_PT.pdf" download data-i18n="cv.pt">&gt; Baixar CV (PT-BR)</a>
+      <a class="btn-voltar" href="index.html" data-i18n="contato.voltar">&lt;- Voltar para a floresta</a>
+    </div>
+  </main>
+  </div>
+
+  <script src="js/i18n.js"></script>
+</body>
+</html>

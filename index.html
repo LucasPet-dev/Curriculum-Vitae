@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfólio de Lucas Petito — Full Stack .NET Developer em Cabo Frio, RJ.">
+  <title>Lucas Petito — Full Stack .NET Developer</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="floresta" aria-hidden="true">
+    <div class="camada camada-fundo"></div>
+    <div class="camada camada-meio"></div>
+    <div class="camada camada-frente"></div>
+    <div class="raios" aria-hidden="true"></div>
+    <div class="nevoa"></div>
+    <div class="folhas" id="folhas"></div>
+    <div class="escurecer" id="escurecer"></div>
+  </div>
+
+  <a class="pular" href="#conteudo" data-i18n="menu.pular">Pular para o conteúdo</a>
+
+  <button type="button" class="menu-toggle" id="menu-toggle"
+          aria-expanded="false" aria-controls="menu-lateral"
+          aria-label="Abrir menu de navegação" data-i18n-aria="menu.abrir">
+    <span class="menu-toggle-barras" aria-hidden="true"></span>
+  </button>
+  <div class="menu-backdrop" id="menu-backdrop" hidden></div>
+
+  <nav class="menu" id="menu-lateral" aria-label="Navegação principal" data-i18n-aria="menu.rotulo">
+    <ul>
+      <li><a href="#topo" data-i18n="menu.inicio">Início</a></li>
+      <li><a href="#sobre" data-i18n="menu.sobre">Sobre</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experiencia" data-i18n="menu.experiencia">Experiência</a></li>
+      <li><a href="#formacao" data-i18n="menu.formacao">Formação</a></li>
+      <li><a href="#cabana" data-i18n="menu.contato">Contato</a></li>
+    </ul>
+    <div class="seletor-idioma" role="group" aria-label="Selecionar idioma" data-i18n-aria="idioma.seletor">
+      <button type="button" data-lang="pt" aria-pressed="true">PT-BR</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      <button type="button" data-lang="es" aria-pressed="false">ES</button>
+    </div>
+  </nav>
+
+  <header id="topo" class="hero">
+    <div class="hero-conteudo">
+      <div class="foto-luz">
+        <div class="foto-raios" aria-hidden="true"></div>
+        <img class="hero-foto" src="assets/images/eu-8bit.png" alt="Foto de Lucas Petito" data-i18n-alt="foto.alt" width="227" height="340">
+      </div>
+      <div class="hero-texto">
+        <p class="hero-saudacao" data-i18n="hero.saudacao">&gt; iniciando trilha_</p>
+        <h1>Lucas Petito</h1>
+        <p class="hero-cargo" data-i18n="hero.cargo">Full Stack .NET Developer</p>
+        <p class="hero-local" data-i18n="hero.local">Cabo Frio, RJ, Brasil</p>
+        <a class="btn-descer" href="#sobre" aria-label="Rolar para a seção Sobre" data-i18n-aria="hero.descer">▼</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo">
+
+    <section id="sobre" class="secao">
+      <div class="caixa">
+        <h2><span data-i18n="sobre.titulo">Sobre mim</span>
+          <img class="bandeira-br" src="assets/images/bandeira-brasil.svg"
+               alt="Bandeira do Brasil em pixel art"
+               data-i18n-alt="sobre.bandeira" width="34" height="24">
+        </h2>
+        <p data-i18n-html="sobre.texto">
+          Sou brasileiro 🇧🇷 e sempre fui apaixonado por tecnologia — dos jogos
+          aos sistemas que facilitavam minha vida. Na época dos estudos,
+          desenvolvi programas para resolver minhas próprias fórmulas de
+          física e química, e depois criei um sistema para me ajudar a
+          organizar a vida financeira e economizar para comprar meu primeiro
+          computador (afinal, é preciso saber economizar para conquistar as
+          próprias coisas). Hoje, sou <strong>Full Stack .NET
+          Developer</strong> focado em <strong>arquitetura de sistemas
+          escaláveis</strong>, <strong>APIs REST</strong> e
+          <strong>otimização de banco de dados</strong>, aplicando os
+          princípios <strong>SOLID</strong> e <strong>Clean
+          Architecture</strong>. Integro <strong>IA ao ciclo de
+          desenvolvimento</strong> — refatoração assistida, análise estática
+          e geração de testes — e utilizo <strong>Spec-Driven
+          Development</strong> para melhorar a consistência arquitetural e
+          reduzir retrabalho. Amo minha área, amo desenvolver conhecimento e
+          ser produtivo, mas nunca sozinho — afinal, ninguém nessa vida
+          cresce sozinho.
+        </p>
+        <div class="cv-botoes">
+          <a class="btn-cv" href="assets/docs/Lucas_Petito_CV_EN.docx" download data-i18n="cv.en">
+            &gt; Baixar CV (EN)
+          </a>
+          <a class="btn-cv" href="assets/docs/Lucas_Petito_CV_PT.pdf" download data-i18n="cv.pt">
+            &gt; Baixar CV (PT-BR)
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="secao">
+      <div class="caixa">
+        <h2 data-i18n="skills.titulo">Skills &amp; Tecnologias</h2>
+        <div class="carrossel" aria-label="Carrossel de skills e tecnologias" data-i18n-aria="skills.carrossel">
+          <ul class="skills-lista carrossel-trilha">
+            <li class="skill"><a class="skill-link" href="https://learn.microsoft.com/dotnet/csharp/" target="_blank" rel="noopener noreferrer" aria-label="Abrir site oficial de C# (nova aba)"><img class="skill-icone" src="assets/icons/csharp.svg" alt="" role="img" aria-label="C#"><span class="skill-nome">C#</span></a></li>
+            <li class="skill"><a class="skill-link" href="https://dotnet.microsoft.com/apps/aspnet" target="_blank" rel="noopener noreferrer" aria-label="Abrir site oficial de ASP.NET Core 8 (nova aba)"><img class="skill-icone" src="assets/icons/aspnetcore.svg" alt="" role="img" aria-label="ASP.NET Core 8"><span class="skill-nome">ASP.NET Core 8</span></a></li>
+            <li class="skill"><a class="skill-link" href="https://learn.microsoft.com/ef/core/" target="_blank" rel="noopener noreferrer" aria-label="Abrir site oficial de Entity Framework Core (nova aba)"><img class="skill-icone" src="assets/icons/efcore.svg" alt="" role="img" aria-label="Entity Framework Core"><span class="skill-nome">Entity Framework Core</span></a></li>
+            <li class="skill"><a class="skill-link" href="https://www.microsoft.com/sql-server" target="_blank" rel="noopener noreferrer" aria-label="Abrir site oficial de SQL Server (nova aba)"><img class="skill-icone" src="assets/icons/sqlserver.svg" alt="" role="img" aria-label="SQL Server"><span class="skill-nome">SQL Server</span></a></li>
+            <li class="skill"><a class="skill-link" href="https://learn.microsoft.com/dotnet/csharp/linq/" target="_blank" rel="noopener noreferrer" aria-label="Abrir site oficial de LINQ (nova aba)"><img class="skill-icone" src="assets/icons/linq.svg" alt="" role="img" aria-label="LINQ"><span class="skill-nome">LINQ</span></a></li>
+            <li class="skill"><a class="skill-link" href="https://restfulapi.net/" target="_blank" rel="noopener noreferrer" aria-label="Abrir site oficial de REST APIs (nova aba)"><img class="skill-icone" src="assets/icons/restapi.svg" alt="" role="img" aria-label="REST APIs"><span class="skill-nome">REST APIs</span></a></li>
+            <li class="skill"><a class="skill-link" href="https://developer.mozilla.org/docs/Web/JavaScript" target="_blank" rel="noopener noreferrer" aria-label="Abrir site oficial de JavaScript (nova aba)"><img class="skill-icone" src="assets/icons/javascript.svg" alt="" role="img" aria-label="JavaScript"><span class="skill-nome">JavaScript</span></a></li>
+            <li class="skill"><a class="skill-link" href="https://www.typescriptlang.org/" target="_blank" rel="noopener noreferrer" aria-label="Abrir site oficial de TypeScript (nova aba)"><img class="skill-icone" src="assets/icons/typescript.svg" alt="" role="img" aria-label="TypeScript"><span class="skill-nome">TypeScript</span></a></li>
+            <li class="skill"><a class="skill-link" href="https://angular.dev/" target="_blank" rel="noopener noreferrer" aria-label="Abrir site oficial de Angular (nova aba)"><img class="skill-icone" src="assets/icons/angular.svg" alt="" role="img" aria-label="Angular"><span class="skill-nome">Angular</span></a></li>
+            <li class="skill"><a class="skill-link" href="https://git-scm.com/" target="_blank" rel="noopener noreferrer" aria-label="Abrir site oficial de Git (nova aba)"><img class="skill-icone" src="assets/icons/git.svg" alt="" role="img" aria-label="Git"><span class="skill-nome">Git</span></a></li>
+            <li class="skill"><a class="skill-link" href="https://nvie.com/posts/a-successful-git-branching-model/" target="_blank" rel="noopener noreferrer" aria-label="Abrir site oficial de Git Flow (nova aba)"><img class="skill-icone" src="assets/icons/gitflow.svg" alt="" role="img" aria-label="Git Flow"><span class="skill-nome">Git Flow</span></a></li>
+            <li class="skill"><a class="skill-link" href="https://azure.microsoft.com/products/devops" target="_blank" rel="noopener noreferrer" aria-label="Abrir site oficial de Azure DevOps (nova aba)"><img class="skill-icone" src="assets/icons/azuredevops.svg" alt="" role="img" aria-label="Azure DevOps"><span class="skill-nome">Azure DevOps</span></a></li>
+            <li class="skill"><a class="skill-link" href="https://www.docker.com/" target="_blank" rel="noopener noreferrer" aria-label="Abrir site oficial de Docker (nova aba)"><img class="skill-icone" src="assets/icons/docker.svg" alt="" role="img" aria-label="Docker"><span class="skill-nome">Docker</span></a></li>
+            <li class="skill"><a class="skill-link" href="https://azure.microsoft.com/" target="_blank" rel="noopener noreferrer" aria-label="Abrir site oficial de Azure Cloud (nova aba)"><img class="skill-icone" src="assets/icons/azurecloud.svg" alt="" role="img" aria-label="Azure Cloud"><span class="skill-nome">Azure Cloud</span></a></li>
+            <li class="skill"><a class="skill-link" href="https://xunit.net/" target="_blank" rel="noopener noreferrer" aria-label="Abrir site oficial de xUnit (nova aba)"><img class="skill-icone" src="assets/icons/xunit.svg" alt="" role="img" aria-label="xUnit"><span class="skill-nome">xUnit</span></a></li>
+            <li class="skill"><a class="skill-link" href="https://learn.microsoft.com/dotnet/architecture/modern-web-apps-azure/common-web-application-architectures" target="_blank" rel="noopener noreferrer" aria-label="Abrir site oficial de Clean Architecture (nova aba)"><img class="skill-icone" src="assets/icons/cleanarch.svg" alt="" role="img" aria-label="Clean Architecture"><span class="skill-nome">Clean Architecture</span></a></li>
+            <li class="skill"><a class="skill-link" href="https://en.wikipedia.org/wiki/SOLID" target="_blank" rel="noopener noreferrer" aria-label="Abrir site oficial de SOLID (nova aba)"><img class="skill-icone" src="assets/icons/solid.svg" alt="" role="img" aria-label="SOLID"><span class="skill-nome">SOLID</span></a></li>
+            <li class="skill"><a class="skill-link" href="https://refactoring.guru/design-patterns" target="_blank" rel="noopener noreferrer" aria-label="Abrir site oficial de Design Patterns (nova aba)"><img class="skill-icone" src="assets/icons/patterns.svg" alt="" role="img" aria-label="Design Patterns"><span class="skill-nome">Design Patterns</span></a></li>
+            <li class="skill"><a class="skill-link" href="https://developer.mozilla.org/docs/Web/HTML" target="_blank" rel="noopener noreferrer" aria-label="Abrir site oficial de HTML (nova aba)"><img class="skill-icone" src="assets/icons/html.svg" alt="" role="img" aria-label="HTML"><span class="skill-nome">HTML</span></a></li>
+            <li class="skill"><a class="skill-link" href="https://developer.mozilla.org/docs/Web/CSS" target="_blank" rel="noopener noreferrer" aria-label="Abrir site oficial de CSS (nova aba)"><img class="skill-icone" src="assets/icons/css.svg" alt="" role="img" aria-label="CSS"><span class="skill-nome">CSS</span></a></li>
+            <li class="skill" aria-hidden="true"><a class="skill-link" href="https://learn.microsoft.com/dotnet/csharp/" target="_blank" rel="noopener noreferrer" tabindex="-1"><img class="skill-icone" src="assets/icons/csharp.svg" alt=""><span class="skill-nome">C#</span></a></li>
+            <li class="skill" aria-hidden="true"><a class="skill-link" href="https://dotnet.microsoft.com/apps/aspnet" target="_blank" rel="noopener noreferrer" tabindex="-1"><img class="skill-icone" src="assets/icons/aspnetcore.svg" alt=""><span class="skill-nome">ASP.NET Core 8</span></a></li>
+            <li class="skill" aria-hidden="true"><a class="skill-link" href="https://learn.microsoft.com/ef/core/" target="_blank" rel="noopener noreferrer" tabindex="-1"><img class="skill-icone" src="assets/icons/efcore.svg" alt=""><span class="skill-nome">Entity Framework Core</span></a></li>
+            <li class="skill" aria-hidden="true"><a class="skill-link" href="https://www.microsoft.com/sql-server" target="_blank" rel="noopener noreferrer" tabindex="-1"><img class="skill-icone" src="assets/icons/sqlserver.svg" alt=""><span class="skill-nome">SQL Server</span></a></li>
+            <li class="skill" aria-hidden="true"><a class="skill-link" href="https://learn.microsoft.com/dotnet/csharp/linq/" target="_blank" rel="noopener noreferrer" tabindex="-1"><img class="skill-icone" src="assets/icons/linq.svg" alt=""><span class="skill-nome">LINQ</span></a></li>
+            <li class="skill" aria-hidden="true"><a class="skill-link" href="https://restfulapi.net/" target="_blank" rel="noopener noreferrer" tabindex="-1"><img class="skill-icone" src="assets/icons/restapi.svg" alt=""><span class="skill-nome">REST APIs</span></a></li>
+            <li class="skill" aria-hidden="true"><a class="skill-link" href="https://developer.mozilla.org/docs/Web/JavaScript" target="_blank" rel="noopener noreferrer" tabindex="-1"><img class="skill-icone" src="assets/icons/javascript.svg" alt=""><span class="skill-nome">JavaScript</span></a></li>
+            <li class="skill" aria-hidden="true"><a class="skill-link" href="https://www.typescriptlang.org/" target="_blank" rel="noopener noreferrer" tabindex="-1"><img class="skill-icone" src="assets/icons/typescript.svg" alt=""><span class="skill-nome">TypeScript</span></a></li>
+            <li class="skill" aria-hidden="true"><a class="skill-link" href="https://angular.dev/" target="_blank" rel="noopener noreferrer" tabindex="-1"><img class="skill-icone" src="assets/icons/angular.svg" alt=""><span class="skill-nome">Angular</span></a></li>
+            <li class="skill" aria-hidden="true"><a class="skill-link" href="https://git-scm.com/" target="_blank" rel="noopener noreferrer" tabindex="-1"><img class="skill-icone" src="assets/icons/git.svg" alt=""><span class="skill-nome">Git</span></a></li>
+            <li class="skill" aria-hidden="true"><a class="skill-link" href="https://nvie.com/posts/a-successful-git-branching-model/" target="_blank" rel="noopener noreferrer" tabindex="-1"><img class="skill-icone" src="assets/icons/gitflow.svg" alt=""><span class="skill-nome">Git Flow</span></a></li>
+            <li class="skill" aria-hidden="true"><a class="skill-link" href="https://azure.microsoft.com/products/devops" target="_blank" rel="noopener noreferrer" tabindex="-1"><img class="skill-icone" src="assets/icons/azuredevops.svg" alt=""><span class="skill-nome">Azure DevOps</span></a></li>
+            <li class="skill" aria-hidden="true"><a class="skill-link" href="https://www.docker.com/" target="_blank" rel="noopener noreferrer" tabindex="-1"><img class="skill-icone" src="assets/icons/docker.svg" alt=""><span class="skill-nome">Docker</span></a></li>
+            <li class="skill" aria-hidden="true"><a class="skill-link" href="https://azure.microsoft.com/" target="_blank" rel="noopener noreferrer" tabindex="-1"><img class="skill-icone" src="assets/icons/azurecloud.svg" alt=""><span class="skill-nome">Azure Cloud</span></a></li>
+            <li class="skill" aria-hidden="true"><a class="skill-link" href="https://xunit.net/" target="_blank" rel="noopener noreferrer" tabindex="-1"><img class="skill-icone" src="assets/icons/xunit.svg" alt=""><span class="skill-nome">xUnit</span></a></li>
+            <li class="skill" aria-hidden="true"><a class="skill-link" href="https://learn.microsoft.com/dotnet/architecture/modern-web-apps-azure/common-web-application-architectures" target="_blank" rel="noopener noreferrer" tabindex="-1"><img class="skill-icone" src="assets/icons/cleanarch.svg" alt=""><span class="skill-nome">Clean Architecture</span></a></li>
+            <li class="skill" aria-hidden="true"><a class="skill-link" href="https://en.wikipedia.org/wiki/SOLID" target="_blank" rel="noopener noreferrer" tabindex="-1"><img class="skill-icone" src="assets/icons/solid.svg" alt=""><span class="skill-nome">SOLID</span></a></li>
+            <li class="skill" aria-hidden="true"><a class="skill-link" href="https://refactoring.guru/design-patterns" target="_blank" rel="noopener noreferrer" tabindex="-1"><img class="skill-icone" src="assets/icons/patterns.svg" alt=""><span class="skill-nome">Design Patterns</span></a></li>
+            <li class="skill" aria-hidden="true"><a class="skill-link" href="https://developer.mozilla.org/docs/Web/HTML" target="_blank" rel="noopener noreferrer" tabindex="-1"><img class="skill-icone" src="assets/icons/html.svg" alt=""><span class="skill-nome">HTML</span></a></li>
+            <li class="skill" aria-hidden="true"><a class="skill-link" href="https://developer.mozilla.org/docs/Web/CSS" target="_blank" rel="noopener noreferrer" tabindex="-1"><img class="skill-icone" src="assets/icons/css.svg" alt=""><span class="skill-nome">CSS</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="experiencia" class="secao">
+      <div class="caixa">
+        <h2 data-i18n="exp.titulo">Experiência</h2>
+
+        <article class="xp">
+          <h3>Trust Solutions Brasil</h3>
+          <p class="xp-cargo" data-i18n="xp1.cargo">Full Stack .NET Software Developer</p>
+          <p class="xp-periodo" data-i18n="xp1.periodo">Estagiário (2023) → Trainee (2024–2025) → Dev Pleno (2026)</p>
+          <ul>
+            <li data-i18n="xp1.i1">Desenvolvimento de sistemas corporativos escaláveis em C# 12, ASP.NET Core 8, EF Core e SQL Server, com foco em performance e confiabilidade.</li>
+            <li data-i18n="xp1.i2">APIs REST em camadas, aplicando os princípios SOLID (SRP, OCP, DIP, LSP, ISP).</li>
+            <li data-i18n="xp1.i3">Modelagem relacional normalizada (3NF), otimização de consultas SQL e LINQ.</li>
+            <li data-i18n="xp1.i4">Git com Git Flow e Azure DevOps, incluindo pipelines de CI/CD.</li>
+            <li data-i18n="xp1.i5">Refatoração de código com padrões de projeto e eliminação de code smells.</li>
+            <li data-i18n="xp1.i6">Spec-Driven Development para guiar o desenvolvimento assistido por IA.</li>
+            <li data-i18n="xp1.i7">Uso de IA para análise crítica, refatoração, análise estática e documentação técnica.</li>
+            <li data-i18n="xp1.i8">Code review estruturado e participação ativa em decisões de arquitetura.</li>
+          </ul>
+        </article>
+
+        <article class="xp">
+          <h3>Universidade Estácio de Sá</h3>
+          <p class="xp-cargo" data-i18n="xp2.cargo">Instrutor — Projeto de Extensão</p>
+          <p class="xp-periodo" data-i18n="xp2.periodo">“Introdução à Programação Aplicada à Automação Residencial”</p>
+          <ul>
+            <li data-i18n="xp2.i1">Aulas de lógica computacional para alunos do projeto de extensão.</li>
+            <li data-i18n="xp2.i2">Ensino de estruturas de controle, funções, arrays e POO.</li>
+            <li data-i18n="xp2.i3">Demonstrações práticas com tecnologias IoT e sistemas embarcados.</li>
+            <li data-i18n="xp2.i4">Mentoria com foco em pensamento crítico e resolução de problemas.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="formacao" class="secao">
+      <div class="caixa">
+        <h2 data-i18n="form.titulo">Formação</h2>
+        <article class="formacao-item">
+          <h3 data-i18n="form.curso">Bacharelado em Sistemas de Informação</h3>
+          <p data-i18n="form.detalhe">Universidade Estácio de Sá — concluído em 2025</p>
+          <figure class="diploma-item">
+            <button type="button" class="diploma-thumb" id="diploma-abrir"
+                    aria-haspopup="dialog"
+                    aria-label="Abrir diploma do Bacharelado em Sistemas de Informação"
+                    data-i18n-aria="form.diplomaAbrir">
+              <img src="assets/images/RVDD.png"
+                   alt="Diploma de Bacharelado em Sistemas de Informação"
+                   data-i18n-alt="form.diplomaAlt"
+                   width="280" height="189" loading="lazy">
+            </button>
+            <figcaption data-i18n="form.diplomaLegenda">Diploma — clique para ampliar</figcaption>
+          </figure>
+        </article>
+      </div>
+    </section>
+
+    <section id="cabana" class="secao secao-cabana">
+      <div class="cabana-aviso">
+        <h2 data-i18n="contato.titulo">Contato</h2>
+        <p data-i18n="contato.aviso">Você chegou ao coração da floresta. Bata na porta da cabana…</p>
+      </div>
+      <div class="cabana-cena">
+        <div class="cabana" id="cabana-interativa" role="button" tabindex="0"
+             aria-label="Cabana de contato — clique na porta para abrir a página de contato"
+             data-i18n-aria="cabana.aria">
+          <img src="assets/cabana.svg" alt="" width="240" height="200">
+          <span class="cabana-brilho" aria-hidden="true"></span>
+        </div>
+        <p class="cabana-dica" data-i18n="cabana.dica">[ clique na porta ]</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="rodape">
+    <p data-i18n="rodape">Feito com HTML, CSS e JavaScript puro — no meio do mato. © Lucas Petito</p>
+  </footer>
+
+  <!-- Modal/lightbox do diploma: visualização apenas, sem download -->
+  <div class="modal-diploma" id="modal-diploma" role="dialog" aria-modal="true" aria-hidden="true"
+       aria-label="Diploma de Bacharelado em Sistemas de Informação"
+       data-i18n-aria="form.diplomaAlt">
+    <button type="button" class="modal-fechar" id="modal-fechar"
+            aria-label="Fechar visualização do diploma"
+            data-i18n-aria="form.modalFechar">&times;</button>
+    <img class="modal-imagem" src="assets/images/RVDD.png"
+         alt="Diploma de Bacharelado em Sistemas de Informação"
+         data-i18n-alt="form.diplomaAlt">
+  </div>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

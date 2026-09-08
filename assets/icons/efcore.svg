@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" shape-rendering="crispEdges" role="img" aria-label="Entity Framework Core">
+  <rect width="24" height="24" fill="#512BD4"/>
+  <rect x="4" y="4" width="7" height="7" fill="#8E6BE8"/>
+  <rect x="13" y="4" width="7" height="7" fill="#B49BF1"/>
+  <rect x="4" y="13" width="7" height="7" fill="#B49BF1"/>
+  <rect x="13" y="13" width="7" height="7" fill="#8E6BE8"/>
+</svg>

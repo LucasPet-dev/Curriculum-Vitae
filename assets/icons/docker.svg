@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" shape-rendering="crispEdges" role="img" aria-label="Docker">
+  <rect width="24" height="24" fill="#1D63ED"/>
+  <rect x="3" y="10" width="4" height="4" fill="#FFFFFF"/>
+  <rect x="8" y="10" width="4" height="4" fill="#FFFFFF"/>
+  <rect x="13" y="10" width="4" height="4" fill="#FFFFFF"/>
+  <rect x="3" y="5" width="4" height="4" fill="#9CC3FF"/>
+  <rect x="8" y="5" width="4" height="4" fill="#9CC3FF"/>
+  <rect x="2" y="15" width="20" height="4" fill="#0B3D91"/>
+</svg>

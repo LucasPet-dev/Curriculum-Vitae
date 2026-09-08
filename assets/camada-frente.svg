@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400" preserveAspectRatio="none" shape-rendering="crispEdges">
+  <defs>
+    <g id="pfr">
+      <rect x="26" y="128" width="12" height="32" fill="#241608"/>
+      <rect x="0"  y="104" width="64" height="24" fill="#0D2417"/>
+      <rect x="6"  y="80"  width="52" height="24" fill="#0D2417"/>
+      <rect x="12" y="56"  width="40" height="24" fill="#12301D"/>
+      <rect x="18" y="32"  width="28" height="24" fill="#12301D"/>
+      <rect x="24" y="16"  width="16" height="16" fill="#183622"/>
+    </g>
+    <g id="pfr2">
+      <rect x="26" y="128" width="12" height="32" fill="#241608"/>
+      <rect x="0"  y="104" width="64" height="24" fill="#0A1C12"/>
+      <rect x="6"  y="80"  width="52" height="24" fill="#0A1C12"/>
+      <rect x="12" y="56"  width="40" height="24" fill="#0D2417"/>
+      <rect x="18" y="32"  width="28" height="24" fill="#0D2417"/>
+      <rect x="24" y="16"  width="16" height="16" fill="#12301D"/>
+    </g>
+  </defs>
+  <use href="#pfr"  x="-60"  y="180"/>
+  <use href="#pfr2" x="120"  y="150"/>
+  <use href="#pfr"  x="340"  y="190"/>
+  <use href="#pfr2" x="540"  y="160"/>
+  <use href="#pfr"  x="700"  y="185"/>
+  <use href="#pfr2" x="880"  y="150"/>
+  <use href="#pfr2" x="-20"  y="60"/>
+  <use href="#pfr"  x="840"  y="70"/>
+</svg>

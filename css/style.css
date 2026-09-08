@@ -1,0 +1,1218 @@
+/* ============================================================
+   Portfólio Lucas Petito — "Floresta Pixelada"
+   Folha de estilos completa: tema pixel art, parallax, carrossel
+   de skills, cabana interativa e seletor de idioma.
+   ============================================================ */
+
+/* Registra a fonte pixelada local (Press Start 2P), usada em títulos. */
+@font-face {
+  font-family: 'Press Start 2P';
+  src: url('../fonts/press-start-2p.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Variáveis de design: paleta da floresta (verdes, terras, luz
+   dourada), cores de texto, fontes e largura máxima do conteúdo. */
+:root {
+
+  /* Verdes: do mais frio/distante ao mais quente/próximo */
+  --verde-noite:    #0b1f14;
+  --verde-profundo: #10261c;
+  --verde-escuro:   #14301f;
+  --verde-oliva:    #3d5a2e;
+  --verde-medio:    #2c5b3a;
+  --verde-musgo:    #4c7a3f;
+  --verde-claro:    #57a773;
+  --verde-esmeralda:#3fbf7f;
+  --verde-lima:     #b8e986;
+  --verde-neon:     #8ee6a0;
+
+  /* Tons de terra/madeira (cabana, card de contato) */
+  --marrom:         #6b4a2e;
+  --marrom-escuro:  #4a3220;
+  --terra:          #a9814f;
+  --areia:          #f1e7d0;
+
+  /* Luz solar dourada (raios, brilhos, destaques) */
+  --luz-dourada:    #ffd866;
+  --luz-quente:     #ffefad;
+  --luz-raio:       rgba(255, 216, 102, 0.14);
+
+  /* Texto */
+  --texto:          #e8f2e6;
+  --texto-suave:    #b9d4bd;
+  --destaque:       #ffd866;
+
+  --fonte-pixel: 'Press Start 2P', monospace;
+  --fonte-corpo: Verdana, Geneva, Tahoma, sans-serif;
+
+  --largura-max: 960px;
+}
+
+/* Reset básico: remove margens/paddings padrão e padroniza o
+   cálculo de tamanho das caixas (border-box). */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--verde-noite);
+  color: var(--texto);
+  font-family: var(--fonte-corpo);
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+img,
+svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--verde-neon);
+  text-decoration: none;
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--destaque);
+  text-decoration: underline;
+}
+
+/* Link de acessibilidade "pular para o conteúdo": fica escondido
+   fora da tela e só aparece quando recebe foco pelo teclado. */
+.pular {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--verde-escuro);
+  color: var(--texto);
+  padding: 0.5rem 1rem;
+  z-index: 100;
+}
+
+.pular:focus-visible {
+  left: 0;
+}
+
+/* Cenário da floresta: contêiner fixo atrás de todo o conteúdo,
+   com degradê vertical simulando o céu escurecendo até o chão. */
+.floresta {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, #1c4630 0%, var(--verde-escuro) 40%, var(--verde-noite) 70%, #050d08 100%);
+}
+
+/* Camadas de árvores (SVGs repetidos na horizontal). O parallax em
+   script.js move cada camada em velocidade diferente no scroll,
+   criando sensação de profundidade na floresta. */
+.camada {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-repeat: repeat-x;
+  background-position: bottom center;
+  background-size: auto 100%;
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+
+.camada-fundo {
+  height: 32vh;
+  background-image: url('../assets/camada-fundo.svg');
+  opacity: 0.85;
+}
+
+.camada-meio {
+  height: 44vh;
+  background-image: url('../assets/camada-meio.svg');
+}
+
+.camada-frente {
+  height: 55vh;
+  background-image: url('../assets/camada-frente.svg');
+}
+
+/* Raios de luz solar diagonais atravessando a copa: gradientes
+   repetidos + brilho difuso no topo esquerdo. A máscara faz os
+   raios desaparecerem gradualmente na metade inferior da tela. */
+.raios {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  /* fonte de luz suave no topo esquerdo (sol atrás da copa) */
+  background:
+    /* leque de raios diagonais finos */
+    repeating-linear-gradient(
+      115deg,
+      transparent      0px,
+      transparent      90px,
+      var(--luz-raio)  90px,
+      var(--luz-raio)  140px,
+      transparent      140px,
+      transparent      230px
+    ),
+    /* brilho difuso do sol no alto */
+    radial-gradient(
+      ellipse 60% 40% at 22% 0%,
+      rgba(255, 239, 173, 0.20),
+      rgba(255, 216, 102, 0.07) 45%,
+      transparent 70%
+    );
+  /* os raios somem gradualmente na metade inferior da tela */
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 35%, transparent 90%);
+          mask-image: linear-gradient(180deg, #000 0%, #000 35%, transparent 90%);
+}
+
+/* Névoa sutil flutuando entre as camadas de árvores. */
+.nevoa {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 20vh;
+  height: 30vh;
+  background: linear-gradient(180deg, transparent 0%, rgba(142, 230, 160, 0.06) 100%);
+  pointer-events: none;
+}
+
+/* Contêiner das folhas caindo (criadas em script.js). */
+.folhas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Cada folha é um quadradinho pixel colorido, animado via Web
+   Animations API no script.js. */
+.folha {
+  position: absolute;
+  top: 0;
+  image-rendering: pixelated;
+  will-change: transform;
+}
+
+/* Overlay escuro sobre toda a floresta: a opacidade é ajustada
+   pelo script.js conforme o scroll, simulando a entrada na mata
+   fechada até chegar à cabana. */
+.escurecer {
+  position: absolute;
+  inset: 0;
+  background-color: #030804;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Títulos: fonte pixelada com sombra dura deslocada (estilo retrô). */
+h1, h2, h3 {
+  font-family: var(--fonte-pixel);
+  line-height: 1.6;
+  color: var(--verde-neon);
+  text-shadow: 4px 4px 0 rgba(0, 0, 0, 0.6);
+}
+
+h1 { font-size: clamp(1.4rem, 5vw, 2.4rem); }
+h2 { font-size: clamp(1rem, 3.5vw, 1.4rem); margin-bottom: 1.25rem; }
+h3 { font-size: clamp(0.8rem, 2.5vw, 1rem); margin-bottom: 0.5rem; }
+
+/* Hero: tela de abertura em viewport cheia, centralizada. */
+.hero {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 5rem 1rem 3rem;
+  position: relative;
+}
+
+.hero-saudacao {
+  font-family: var(--fonte-pixel);
+  font-size: clamp(0.55rem, 2vw, 0.75rem);
+  color: var(--texto-suave);
+  margin-bottom: 1.5rem;
+}
+
+/* Layout do Hero: foto de perfil ao lado do bloco de texto. */
+.hero-conteudo {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.hero-texto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ============================================================
+   Luz atrás da foto de perfil (Hero e Contato)
+   Feixes "sunburst" em conic-gradient, em rotação contínua e
+   pulsando de tamanho, posicionados atrás da imagem (z-index
+   menor). Paleta: dourado/verde-lima da luz solar da floresta,
+   com opacidade baixa para não competir com a foto.
+   Sem blur pesado: fade dos raios via mask radial (barato na GPU).
+   ============================================================ */
+.foto-luz {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.foto-raios {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 210%;
+  aspect-ratio: 1 / 1;
+  z-index: 0;
+  background:
+    radial-gradient(circle, rgba(255, 239, 173, 0.30) 0%, rgba(255, 216, 102, 0.10) 30%, transparent 52%),
+    repeating-conic-gradient(from 0deg at 50% 50%,
+      rgba(255, 216, 102, 0.42) 0deg 5deg,
+      rgba(184, 233, 134, 0.20) 5deg 9deg,
+      transparent 9deg 18deg);
+  -webkit-mask-image: radial-gradient(circle, #000 18%, transparent 66%);
+  mask-image: radial-gradient(circle, #000 18%, transparent 66%);
+  opacity: 0.75;
+  animation: luz-solar 26s linear infinite;
+  will-change: transform;
+}
+
+/* Giro 360° contínuo + "respiração" (scale pulsa a cada 90°).
+   O translate(-50%,-50%) centraliza o elemento e precisa fazer
+   parte de todos os keyframes. */
+@keyframes luz-solar {
+  0%   { transform: translate(-50%, -50%) rotate(0deg)   scale(0.92); animation-timing-function: ease-in-out; }
+  25%  { transform: translate(-50%, -50%) rotate(90deg)  scale(1.07); animation-timing-function: ease-in-out; }
+  50%  { transform: translate(-50%, -50%) rotate(180deg) scale(0.92); animation-timing-function: ease-in-out; }
+  75%  { transform: translate(-50%, -50%) rotate(270deg) scale(1.07); animation-timing-function: ease-in-out; }
+  100% { transform: translate(-50%, -50%) rotate(360deg) scale(0.92); }
+}
+
+/* Foto sempre acima dos raios */
+.foto-luz img {
+  position: relative;
+  z-index: 1;
+}
+
+/* Acessibilidade/performance: desliga a animação para quem
+   prefere movimento reduzido. */
+@media (prefers-reduced-motion: reduce) {
+  .foto-raios {
+    animation: none;
+  }
+}
+
+/* Foto de perfil (PNG sem fundo, fica solta na cena).
+   No Hero é o elemento visual dominante, maior que o bloco de texto. */
+.hero-foto {
+  height: clamp(260px, 42vh, 380px);
+  width: auto;
+  flex-shrink: 0;
+  filter: drop-shadow(8px 10px 0 rgba(0, 0, 0, 0.45));
+}
+
+/* No Contato: o personagem acompanha a altura do card (stretch no
+   wrapper flex), ficando "em pé" na base da cena, alinhado com o
+   rodapé do card. O brilho dourado já vem embutido na imagem
+   (sem .foto-raios nesta página). */
+.foto-luz-contato {
+  flex-shrink: 0;
+  align-self: stretch;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.foto-luz-contato .contato-foto {
+  display: block;
+  height: 100%;
+  width: auto;
+  max-width: none;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: drop-shadow(8px 10px 0 rgba(0, 0, 0, 0.45));
+}
+
+@media (max-width: 600px) {
+  .hero-conteudo {
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .hero-foto {
+    height: clamp(200px, 32vh, 260px);
+  }
+
+  .foto-luz-contato .contato-foto {
+    height: clamp(240px, 38vh, 320px);
+  }
+}
+
+.hero-cargo {
+  font-family: var(--fonte-pixel);
+  font-size: clamp(0.7rem, 2.5vw, 0.95rem);
+  color: var(--destaque);
+  margin-top: 1rem;
+}
+
+.hero-local {
+  margin-top: 0.75rem;
+  color: var(--texto-suave);
+  font-size: 0.95rem;
+}
+
+.btn-descer {
+  margin-top: 2.5rem;
+  display: inline-block;
+  font-family: var(--fonte-pixel);
+  font-size: 1.1rem;
+  color: var(--verde-noite);
+  background-color: var(--verde-neon);
+  border: 4px solid var(--verde-noite);
+  box-shadow: 6px 6px 0 0 rgba(0, 0, 0, 0.55);
+  padding: 0.7rem 0.9rem 0.5rem;
+}
+
+.btn-descer:hover,
+.btn-descer:focus-visible {
+  background-color: var(--destaque);
+  color: var(--verde-noite);
+  text-decoration: none;
+  transform: translate(2px, 2px);
+  box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 0.55);
+}
+
+/* ============================================================
+   Barra lateral de navegação (sidebar fixa à direita)
+   Itens verticais, item ativo destacado via JS
+   (IntersectionObserver). No mobile vira um drawer deslizante
+   aberto pelo botão hambúrguer.
+   ============================================================ */
+.menu {
+  position: fixed;
+  top: 50%;
+  right: 1.25rem;
+  transform: translateY(-50%);
+  z-index: 250;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1.25rem;
+  padding: 1.1rem 0.9rem;
+  background-color: rgba(11, 31, 20, 0.82);
+  border: 3px solid var(--verde-medio);
+  box-shadow: 6px 6px 0 0 rgba(0, 0, 0, 0.45);
+}
+
+.menu ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.menu a {
+  position: relative;
+  display: block;
+  font-family: var(--fonte-pixel);
+  font-size: 0.6rem;
+  color: var(--texto-suave);
+  padding: 0.45rem 0.5rem 0.45rem 1rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+/* Indicador lateral do item (aparece no hover e no item ativo) */
+.menu a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) scaleY(0);
+  width: 5px;
+  height: 100%;
+  background-color: var(--verde-neon);
+  box-shadow: 2px 2px 0 0 rgba(0, 0, 0, 0.55);
+  transition: transform 0.2s ease;
+}
+
+.menu a:hover,
+.menu a:focus-visible {
+  color: var(--verde-neon);
+  text-decoration: none;
+}
+
+.menu a:hover::before,
+.menu a:focus-visible::before {
+  transform: translateY(-50%) scaleY(0.6);
+}
+
+/* Item da seção atualmente visível (classe aplicada via JS) */
+.menu a.ativo {
+  color: var(--verde-neon);
+}
+
+.menu a.ativo::before {
+  transform: translateY(-50%) scaleY(1);
+}
+
+/* Seletor de idioma dentro da sidebar: fica na base, e deixa de
+   ser fixo no canto (o override do contato.html continua fixo) */
+.menu .seletor-idioma {
+  position: static;
+  justify-content: center;
+}
+
+/* Botão hambúrguer e backdrop: só aparecem no mobile */
+.menu-toggle,
+.menu-backdrop {
+  display: none;
+}
+
+@media (max-width: 1100px) {
+  .menu {
+    right: 0.6rem;
+    padding: 0.8rem 0.6rem;
+  }
+
+  .menu a {
+    font-size: 0.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Sidebar vira drawer lateral deslizante */
+  .menu {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    transform: translateX(110%);
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem 1.75rem;
+    border-right: none;
+    border-left: 3px solid var(--verde-medio);
+    transition: transform 0.28s ease;
+  }
+
+  .menu.aberto {
+    transform: translateX(0);
+  }
+
+  .menu a {
+    font-size: 0.7rem;
+    padding: 0.7rem 0.6rem 0.7rem 1rem;
+  }
+
+  /* Botão hambúrguer pixel art, fixo no canto superior direito */
+  .menu-toggle {
+    display: block;
+    position: fixed;
+    top: 0.75rem;
+    right: 0.75rem;
+    z-index: 300;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    background-color: rgba(11, 31, 20, 0.9);
+    border: 3px solid var(--verde-medio);
+    box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 0.55);
+    cursor: pointer;
+  }
+
+  /* Ícone: 3 barras feitas com box-shadows (sem imagem) */
+  .menu-toggle-barras,
+  .menu-toggle-barras::before,
+  .menu-toggle-barras::after {
+    display: block;
+    width: 20px;
+    height: 4px;
+    background-color: var(--verde-neon);
+    position: absolute;
+    left: 50%;
+    margin-left: -10px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  .menu-toggle-barras {
+    top: 50%;
+    margin-top: -2px;
+  }
+
+  .menu-toggle-barras::before {
+    content: "";
+    transform: translateY(-9px);
+  }
+
+  .menu-toggle-barras::after {
+    content: "";
+    transform: translateY(9px);
+  }
+
+  /* Estado "aberto": vira um X */
+  .menu-toggle[aria-expanded="true"] .menu-toggle-barras {
+    transform: rotate(45deg);
+  }
+
+  .menu-toggle[aria-expanded="true"] .menu-toggle-barras::before {
+    transform: rotate(90deg);
+  }
+
+  .menu-toggle[aria-expanded="true"] .menu-toggle-barras::after {
+    opacity: 0;
+  }
+
+  /* Fundo escurecido atrás do drawer aberto */
+  .menu-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 240;
+    background-color: rgba(5, 13, 8, 0.7);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+
+  .menu-backdrop.visivel {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+/* Seções de conteúdo: altura mínima parcial da tela (70vh) para um
+   scroll compacto, sem grandes vazios entre os blocos. */
+.secao {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1rem;
+  position: relative;
+}
+
+
+/* Caixa de conteúdo: painel escuro com borda e cantos "em escada"
+   (efeito pixel art feito com box-shadows escalonadas). */
+.caixa {
+  width: 100%;
+  max-width: var(--largura-max);
+  background-color: rgba(11, 31, 20, 0.94);
+  border: 4px solid var(--verde-medio);
+  /* cantos "em escada", típicos de pixel art */
+  box-shadow:
+    0 -8px 0 -4px var(--verde-medio),
+    0 8px 0 -4px var(--verde-medio),
+    -8px 0 0 -4px var(--verde-medio),
+    8px 0 0 -4px var(--verde-medio),
+    12px 12px 0 0 rgba(0, 0, 0, 0.55);
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+.caixa p + p {
+  margin-top: 1rem;
+}
+
+/* Carrossel de skills ("roleta") */
+.skills-lista {
+  list-style: none;
+}
+
+/* Viewport do carrossel: moldura invisível que esconde o excesso
+   da trilha. Margens negativas compensadas por padding evitam que
+   a sombra dos cards seja cortada nas bordas. */
+.carrossel {
+  overflow: hidden;
+  margin-top: 1.5rem;
+  /* margens negativas + padding para a sombra dos itens nao ser cortada */
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+  padding: 0.5rem;
+  /* em telas touch: só a rolagem vertical da página é capturada
+     sobre o carrossel; o toque nos itens continua livre */
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Trilha do carrossel: a lista de skills aparece duplicada lado a
+   lado; a animação desloca exatamente -50% (o tamanho de uma cópia),
+   fechando o loop infinito sem salto visual. */
+.carrossel-trilha {
+  display: flex;
+  width: max-content;
+  animation: rodar-carrossel 45s linear infinite;
+  will-change: transform;
+}
+
+.carrossel-trilha .skill {
+  flex-shrink: 0;
+  width: 170px;
+  /* margem em vez de gap no flex: garante que -50% fecha o loop exato */
+  margin-right: 0.75rem;
+}
+
+@keyframes rodar-carrossel {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* Pausa a roleta com o mouse sobre o carrossel ou ao navegar por
+   teclado (:focus-visible via :has — evita que um link recém-clicado
+   em nova aba mantenha a roleta travada ao voltar para a página). */
+.carrossel:hover .carrossel-trilha,
+.carrossel:has(.skill-link:focus-visible) .carrossel-trilha {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carrossel-trilha {
+    animation: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .carrossel-trilha .skill {
+    width: 150px;
+  }
+}
+
+/* Cada skill: card verde escuro com borda pixelada e sombra dura. */
+.skill {
+  background-color: rgba(20, 48, 31, 0.85);
+  border: 4px solid var(--verde-medio);
+  box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 0.5);
+  font-size: 0.8rem;
+}
+
+.skill:hover,
+.skill:focus-within {
+  border-color: var(--verde-neon);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 0 rgba(0, 0, 0, 0.5);
+}
+
+/* O link da skill ocupa o card inteiro (área clicável máxima). */
+.skill-link {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.6rem;
+  color: var(--texto);
+  cursor: pointer;
+}
+
+.skill-link:hover,
+.skill-link:focus-visible {
+  color: var(--texto);
+  text-decoration: none;
+}
+
+.skill-link:focus-visible {
+  outline: 3px solid var(--destaque);
+  outline-offset: 2px;
+}
+
+.skill-icone {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* Blocos de experiência: régua lateral verde + marcadores ▸ nos
+   itens da lista. */
+.xp {
+  border-left: 4px solid var(--verde-medio);
+  padding-left: 1.25rem;
+  margin-top: 2rem;
+}
+
+.xp-cargo {
+  color: var(--destaque);
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
+.xp-periodo {
+  color: var(--texto-suave);
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+}
+
+.xp ul {
+  list-style: none;
+}
+
+.xp li {
+  padding-left: 1.25rem;
+  position: relative;
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+}
+
+.xp li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--verde-claro);
+}
+
+/* Bloco de formação: régua lateral em tom de madeira. */
+.formacao-item {
+  border-left: 4px solid var(--marrom);
+  padding-left: 1.25rem;
+}
+
+/* Miniatura clicável do diploma: borda pixel art na mesma linguagem
+   visual dos botões do site; abre o modal de visualização. */
+.diploma-item {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.diploma-thumb {
+  display: inline-block;
+  padding: 0;
+  background: none;
+  border: 4px solid var(--verde-noite);
+  box-shadow: 6px 6px 0 0 rgba(0, 0, 0, 0.55);
+  cursor: zoom-in;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.diploma-thumb img {
+  display: block;
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+}
+
+.diploma-thumb:hover,
+.diploma-thumb:focus-visible {
+  transform: translate(2px, 2px);
+  box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 0.55);
+  outline: 2px solid var(--destaque, var(--luz-dourada));
+  outline-offset: 2px;
+}
+
+.diploma-item figcaption {
+  margin-top: 0.75rem;
+  font-family: var(--fonte-pixel);
+  font-size: 0.55rem;
+  color: var(--texto-suave);
+}
+
+/* Modal/lightbox do diploma: overlay escuro sobre a página, imagem
+   centralizada (somente visualização, sem link de download). */
+.modal-diploma {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  background: rgba(5, 13, 8, 0.88);
+}
+
+.modal-diploma.aberto {
+  display: flex;
+}
+
+.modal-imagem {
+  max-width: min(1000px, 92vw);
+  max-height: 85vh;
+  width: auto;
+  height: auto;
+  border: 4px solid var(--marrom);
+  box-shadow: 12px 12px 0 0 rgba(0, 0, 0, 0.55);
+  cursor: default;
+}
+
+/* Botão de fechar: canto superior direito do overlay; na mídia
+   pequena vem logo acima da imagem. */
+.modal-fechar {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-family: var(--fonte-pixel);
+  font-size: 0.9rem;
+  color: var(--verde-noite);
+  background-color: var(--verde-neon);
+  border: 4px solid var(--verde-noite);
+  box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 0.55);
+  padding: 0.5rem 0.8rem;
+  cursor: pointer;
+}
+
+.modal-fechar:hover,
+.modal-fechar:focus-visible {
+  background-color: var(--luz-dourada);
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 0 rgba(0, 0, 0, 0.55);
+}
+
+/* Botão de download do CV: estilo de botão pixel art com sombra
+   dura; no hover "afunda" (desloca e reduz a sombra). */
+.btn-cv {
+  display: inline-block;
+  margin-top: 1.5rem;
+  font-family: var(--fonte-pixel);
+  font-size: 0.65rem;
+  color: var(--verde-noite);
+  background-color: var(--verde-neon);
+  border: 4px solid var(--verde-noite);
+  box-shadow: 6px 6px 0 0 rgba(0, 0, 0, 0.55);
+  padding: 0.8rem 1rem;
+}
+
+/* Bandeira do Brasil pixelada ao lado do título "Sobre mim". */
+.bandeira-br {
+  display: inline-block;
+  vertical-align: middle;
+  height: 1.1em;
+  width: auto;
+  margin-left: 0.6rem;
+  border: 2px solid var(--verde-noite);
+  box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.55);
+}
+
+/* Container dos botões de CV (EN e PT-BR lado a lado, quebrando
+   linha no mobile). */.cv-botoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.cv-botoes .btn-cv {
+  margin-top: 0;
+}
+
+.btn-cv:hover,
+.btn-cv:focus-visible {
+  background-color: var(--destaque);
+  color: var(--verde-noite);
+  text-decoration: none;
+  transform: translate(2px, 2px);
+  box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 0.55);
+}
+
+/* Página de contato (contato.html): tela cheia sobre o interior da
+   cabana em pixel art; overlay escuro garante contraste do conteúdo
+   sobre a madeira clara. Personagem à esquerda e card à direita no
+   desktop, empilhados no mobile. */
+.pagina-contato {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url("../assets/images/cabana-fundo.webp") center / cover no-repeat #050d08;
+  padding: 2rem 1rem;
+}
+
+/* Degradê escuro apenas no topo (legibilidade do seletor de idioma);
+   o restante da cena da cabana fica livre, como na referência. */
+.pagina-contato::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(5, 13, 8, 0.7) 0%, rgba(5, 13, 8, 0.25) 8%, transparent 18%);
+  pointer-events: none;
+}
+
+/* Conteúdo sempre acima do overlay. */
+.pagina-contato > * {
+  position: relative;
+  z-index: 1;
+}
+
+.contato-wrapper {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2.5rem;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Card estreito à direita: quase opaco, borda fina com cantos
+   levemente arredondados e glow escuro ao redor (como na referência). */
+.contato-caixa {
+  width: 100%;
+  max-width: 400px;
+  background-color: rgba(9, 24, 15, 0.95);
+  border: 3px solid var(--marrom);
+  border-radius: 8px;
+  box-shadow:
+    0 0 0 2px rgba(0, 0, 0, 0.45),
+    0 0 28px rgba(0, 0, 0, 0.6),
+    inset 0 0 32px rgba(0, 0, 0, 0.35);
+  padding: clamp(1rem, 3vh, 1.5rem) clamp(1.25rem, 4vw, 2rem);
+}
+
+.contato-intro {
+  color: var(--texto-suave);
+  margin: 0.5rem 0 1rem;
+}
+
+.contato-lista {
+  list-style: none;
+}
+
+.contato-lista li {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.45rem 0;
+  border-bottom: 2px solid var(--verde-escuro);
+  font-size: 0.95rem;
+  overflow-wrap: anywhere;
+}
+
+/* Ícone verde ao lado de cada campo do card de contato. */
+.contato-icone {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  color: var(--verde-neon);
+}
+
+.contato-campo {
+  flex: 1;
+  min-width: 0;
+}
+
+.contato-rotulo {
+  display: block;
+  font-family: var(--fonte-pixel);
+  font-size: 0.55rem;
+  color: var(--destaque);
+  margin-bottom: 0.3rem;
+}
+
+.contato-acoes {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: stretch;
+}
+
+/* Botões do card de contato ocupam a largura total (como na referência).
+   margin-top zerado: o espaçamento vem do gap do .contato-acoes, para o
+   card caber na altura da viewport em telas de notebook (~768px). */
+.contato-acoes .btn-cv,
+.contato-acoes .btn-voltar {
+  width: 100%;
+  margin-top: 0;
+  text-align: left;
+}
+
+.btn-voltar {
+  font-family: var(--fonte-pixel);
+  font-size: 0.6rem;
+  color: var(--verde-neon);
+  border: 3px solid var(--verde-medio);
+  padding: 0.6rem 0.8rem;
+}
+
+.btn-voltar:hover,
+.btn-voltar:focus-visible {
+  background-color: var(--verde-medio);
+  text-decoration: none;
+}
+
+/* Seção da cabana (final da página): fundo escurecido em degradê,
+   simulando o coração da floresta. */
+.secao-cabana {
+  flex-direction: column;
+  gap: 2rem;
+  text-align: center;
+  background: linear-gradient(180deg, transparent 0%, rgba(3, 8, 5, 0.85) 100%);
+  padding-bottom: 4rem;
+}
+
+.cabana-aviso h2 { margin-bottom: 0.75rem; }
+
+.cabana-cena {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Cabana pixelada: clicável (abre a página de contato no script.js,
+   com som de porta). */
+.cabana {
+  cursor: pointer;
+  position: relative;
+  width: min(280px, 70vw);
+  outline-offset: 6px;
+}
+
+.cabana img {
+  width: 100%;
+  height: auto;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0));
+}
+
+/* Brilho dourado tremulante sobre a janela, simulando luz acesa. */
+.cabana-brilho {
+  position: absolute;
+  left: 22%;
+  top: 55%;
+  width: 20%;
+  height: 22%;
+  background-color: var(--destaque);
+  opacity: 0.35;
+  filter: blur(6px);
+  animation: tremularJanela 2.4s steps(2) infinite;
+  pointer-events: none;
+}
+
+/* Interação: no hover/foco a cabana treme levemente e a janela
+   brilha mais forte. */
+.cabana:hover,
+.cabana:focus-visible {
+  animation: tremer 0.3s steps(2) infinite;
+}
+
+.cabana:hover img,
+.cabana:focus-visible img {
+  filter: drop-shadow(0 0 12px rgba(255, 216, 102, 0.45));
+}
+
+.cabana:hover .cabana-brilho,
+.cabana:focus-visible .cabana-brilho {
+  opacity: 0.6;
+}
+
+@keyframes tremer {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(-2px, 1px); }
+  50%  { transform: translate(2px, -1px); }
+  75%  { transform: translate(-1px, -1px); }
+  100% { transform: translate(1px, 1px); }
+}
+
+@keyframes tremularJanela {
+  0%, 100% { opacity: 0.35; }
+  50%      { opacity: 0.55; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cabana:hover,
+  .cabana:focus-visible,
+  .cabana-brilho {
+    animation: none;
+  }
+}
+
+.cabana-dica {
+  font-family: var(--fonte-pixel);
+  font-size: 0.6rem;
+  color: var(--texto-suave);
+  animation: piscar 1.6s steps(2) infinite;
+}
+
+@keyframes piscar {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.35; }
+}
+
+/* Seletor de idioma: fixo no canto superior direito, sempre visível
+   durante o scroll. O botão do idioma ativo fica destacado em neon. */
+.seletor-idioma {
+  position: fixed;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 200;
+  display: flex;
+  gap: 4px;
+}
+
+.seletor-idioma button {
+  font-family: var(--fonte-pixel);
+  font-size: 0.55rem;
+  color: var(--texto);
+  background-color: rgba(11, 31, 20, 0.9);
+  border: 3px solid var(--verde-medio);
+  padding: 0.45rem 0.55rem;
+  cursor: pointer;
+}
+
+.seletor-idioma button:hover,
+.seletor-idioma button:focus-visible {
+  background-color: var(--verde-medio);
+  color: var(--verde-neon);
+}
+
+.seletor-idioma button[aria-pressed="true"] {
+  background-color: var(--verde-neon);
+  color: var(--verde-noite);
+  border-color: var(--verde-noite);
+}
+
+/* Rodapé: fundo quase preto, fechando a cena. */
+.rodape {
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 0.8rem;
+  color: var(--texto-suave);
+  background-color: #050d08;
+}
+
+/* Ajustes responsivos: mobile (até 600px) e telas grandes. */
+@media (max-width: 600px) {
+  .secao {
+    min-height: 60vh;
+    padding: 2rem 0.75rem;
+  }
+
+  .xp {
+    padding-left: 0.85rem;
+  }
+
+  /* personagem empilha acima do card de contato no mobile,
+     centralizado na largura */
+  .contato-wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.75rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .carrossel-trilha .skill {
+    width: 190px;
+  }
+}

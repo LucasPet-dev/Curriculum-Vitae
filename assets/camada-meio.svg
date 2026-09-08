@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 320" preserveAspectRatio="none" shape-rendering="crispEdges">
+  <defs>
+    <g id="pm">
+      <rect x="26" y="128" width="12" height="32" fill="#3A281A"/>
+      <rect x="0"  y="104" width="64" height="24" fill="#1E4029"/>
+      <rect x="6"  y="80"  width="52" height="24" fill="#1E4029"/>
+      <rect x="12" y="56"  width="40" height="24" fill="#265033"/>
+      <rect x="18" y="32"  width="28" height="24" fill="#265033"/>
+      <rect x="24" y="16"  width="16" height="16" fill="#2E5B3A"/>
+    </g>
+    <g id="pm2">
+      <rect x="26" y="128" width="12" height="32" fill="#3A281A"/>
+      <rect x="0"  y="104" width="64" height="24" fill="#183622"/>
+      <rect x="6"  y="80"  width="52" height="24" fill="#183622"/>
+      <rect x="12" y="56"  width="40" height="24" fill="#1E4029"/>
+      <rect x="18" y="32"  width="28" height="24" fill="#1E4029"/>
+      <rect x="24" y="16"  width="16" height="16" fill="#265033"/>
+    </g>
+    <g id="arbusto">
+      <rect x="0"  y="8" width="48" height="16" fill="#265033"/>
+      <rect x="8"  y="0" width="32" height="8"  fill="#2E5B3A"/>
+    </g>
+  </defs>
+  <use href="#pm"      x="40"   y="0" transform="translate(0,0)"/>
+  <use href="#pm2"     x="200"  y="0"/>
+  <use href="#arbusto" x="320"  y="135"/>
+  <use href="#pm"      x="400"  y="0"/>
+  <use href="#pm2"     x="580"  y="0"/>
+  <use href="#arbusto" x="700"  y="135"/>
+  <use href="#pm"      x="780"  y="0"/>
+  <use href="#pm2"     x="-40"  y="20"/>
+  <use href="#pm"      x="920"  y="20"/>
+</svg>

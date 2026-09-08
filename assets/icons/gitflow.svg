@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" shape-rendering="crispEdges" role="img" aria-label="Git Flow">
+  <rect width="24" height="24" fill="#6E4A8E"/>
+  <rect x="3" y="10" width="18" height="3" fill="#FFFFFF"/>
+  <rect x="8" y="4" width="3" height="6" fill="#D8BFE8"/>
+  <rect x="8" y="13" width="3" height="7" fill="#D8BFE8"/>
+  <rect x="14" y="4" width="3" height="6" fill="#D8BFE8"/>
+  <rect x="14" y="13" width="3" height="7" fill="#D8BFE8"/>
+</svg>
