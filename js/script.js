@@ -21,7 +21,6 @@
   const VELOCIDADE_MEIO = 0.28;
   const VELOCIDADE_FRENTE = 0.5;
 
-  let ultimaPosicao = -1;
   let executando = false;
 
   /* Altura total rolável da página (usada para saber em que ponto do

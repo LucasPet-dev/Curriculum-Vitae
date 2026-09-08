@@ -19,25 +19,16 @@
 
   /* Verdes: do mais frio/distante ao mais quente/próximo */
   --verde-noite:    #0b1f14;
-  --verde-profundo: #10261c;
   --verde-escuro:   #14301f;
-  --verde-oliva:    #3d5a2e;
   --verde-medio:    #2c5b3a;
-  --verde-musgo:    #4c7a3f;
   --verde-claro:    #57a773;
-  --verde-esmeralda:#3fbf7f;
-  --verde-lima:     #b8e986;
   --verde-neon:     #8ee6a0;
 
   /* Tons de terra/madeira (cabana, card de contato) */
   --marrom:         #6b4a2e;
-  --marrom-escuro:  #4a3220;
-  --terra:          #a9814f;
-  --areia:          #f1e7d0;
 
   /* Luz solar dourada (raios, brilhos, destaques) */
   --luz-dourada:    #ffd866;
-  --luz-quente:     #ffefad;
   --luz-raio:       rgba(255, 216, 102, 0.14);
 
   /* Texto */
@@ -338,7 +329,6 @@ h3 { font-size: clamp(0.8rem, 2.5vw, 1rem); margin-bottom: 0.5rem; }
    (sem .foto-raios nesta página). */
 .foto-luz-contato {
   flex-shrink: 0;
-  align-self: stretch;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -346,9 +336,10 @@ h3 { font-size: clamp(0.8rem, 2.5vw, 1rem); margin-bottom: 0.5rem; }
 
 .foto-luz-contato .contato-foto {
   display: block;
-  height: 100%;
+  height: auto;
+  max-height: 78vh;
   width: auto;
-  max-width: none;
+  max-width: 42vw;
   object-fit: contain;
   object-position: center bottom;
   filter: drop-shadow(8px 10px 0 rgba(0, 0, 0, 0.45));
@@ -930,10 +921,11 @@ h3 { font-size: clamp(0.8rem, 2.5vw, 1rem); margin-bottom: 0.5rem; }
   min-height: 100vh;
   min-height: 100svh;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   background: url("../assets/images/cabana-fundo.webp") center / cover no-repeat #050d08;
-  padding: 2rem 1rem;
+  background-size: cover;
+  padding: 4rem 1rem 0;
 }
 
 /* Degradê escuro apenas no topo (legibilidade do seletor de idioma);
@@ -964,8 +956,11 @@ h3 { font-size: clamp(0.8rem, 2.5vw, 1rem); margin-bottom: 0.5rem; }
 /* Card estreito à direita: quase opaco, borda fina com cantos
    levemente arredondados e glow escuro ao redor (como na referência). */
 .contato-caixa {
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
+  min-height: min(78vh, 640px);
   background-color: rgba(9, 24, 15, 0.95);
   border: 3px solid var(--marrom);
   border-radius: 8px;
@@ -973,7 +968,7 @@ h3 { font-size: clamp(0.8rem, 2.5vw, 1rem); margin-bottom: 0.5rem; }
     0 0 0 2px rgba(0, 0, 0, 0.45),
     0 0 28px rgba(0, 0, 0, 0.6),
     inset 0 0 32px rgba(0, 0, 0, 0.35);
-  padding: clamp(1rem, 3vh, 1.5rem) clamp(1.25rem, 4vw, 2rem);
+  padding: clamp(1.25rem, 4vh, 2rem) clamp(1.25rem, 4vw, 2rem);
 }
 
 .contato-intro {
@@ -1017,7 +1012,8 @@ h3 { font-size: clamp(0.8rem, 2.5vw, 1rem); margin-bottom: 0.5rem; }
 }
 
 .contato-acoes {
-  margin-top: 1rem;
+  margin-top: auto;
+  padding-top: 1.25rem;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
